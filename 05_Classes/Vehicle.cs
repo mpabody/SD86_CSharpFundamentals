@@ -9,6 +9,15 @@ namespace _05_Classes
     public enum VehicleType { Car, Truck, Van, Motorcycle, Plane, Boat, Scooter}
     public class Vehicle
     {
+        public Vehicle(string make, string model, double mileage, VehicleType typeOfVehicle)
+        {
+            Make = make.ToLower();
+            Model = model;
+            Mileage = mileage;
+            TypeOfVehicle = typeOfVehicle;
+        }
+        public Vehicle() { }
+
         //1 Access Modifier
         //2 Type - type the property holds
         //3 Name
@@ -67,5 +76,20 @@ namespace _05_Classes
         // properties including IsFlashing
         // method for TurnOn() and TurnOff()
         // - methods would set value of IsFlashing
+    }
+
+    public class Indicator
+    {
+        public bool IsFlashing { get; private set; }
+
+        public void TurnOn()
+        {
+            IsFlashing = true;
+        }
+
+        public void TurnOff()
+        {
+            IsFlashing = false;
+        }
     }
 }
