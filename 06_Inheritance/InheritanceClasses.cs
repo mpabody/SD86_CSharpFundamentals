@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _06_Inheritance
 {
-    public class Person
+    public abstract class Person
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -29,6 +29,11 @@ namespace _06_Inheritance
             PhoneNumber = phoneNumber;
             Email = email;
         }
+
+        public abstract void WhoAmI();
+        //{
+        //    Console.WriteLine("I am a person");
+        //}
     }
 
     public class Customer : Person
@@ -40,22 +45,40 @@ namespace _06_Inheritance
         {
             IsPremium = isPremium;
         }
+
+        public override void WhoAmI()
+        {
+            //base.WhoAmI();
+            Console.WriteLine("I am a customer");
+        }
     }
 
     public class Employee : Person
     {
         public int EmployeeNumber { get; set; }
         public DateTime HireDate { get; set; }
-        public int YearsWithCompany { get; set; } // challenge - remove the set and calculate years based on HireDate
+        public int YearsWithCompany
+        {
+            get
+            {
+                double totalTime = (DateTime.Now - HireDate).TotalDays / 365.25;
+                return Convert.ToInt32(Math.Floor(totalTime));
+            }
+        } 
 
-        public Employee(int employeeNumber) 
+        public Employee(int employeeNumber)
         {
             EmployeeNumber = employeeNumber;
         }
-        public Employee (int employeeNumber, DateTime hireDate, string firstName, string lastName, string phoneNumber, string email): base (firstName, lastName, phoneNumber, email )
+        public Employee(int employeeNumber, DateTime hireDate, string firstName, string lastName, string phoneNumber, string email) : base(firstName, lastName, phoneNumber, email)
         {
             EmployeeNumber = employeeNumber;
             HireDate = hireDate;
+        }
+        public override void WhoAmI()
+        {
+            Console.WriteLine("I am an Employee");
+            //base.WhoAmI();
         }
     }
 
