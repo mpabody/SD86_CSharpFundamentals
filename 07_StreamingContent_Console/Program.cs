@@ -10,6 +10,8 @@ namespace _07_StreamingContent_Console
     {
         static void Main(string[] args)
         {
+            ProgramUI ui = new ProgramUI();
+            ui.Run();
         }
     }
 }
