@@ -1,4 +1,5 @@
 ﻿using _07_StreamingContent_Repository;
+using _07_StreamingContent_Repository.Content;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,26 @@ namespace _07_StreamingContent_Tests
             _repo = new StreamingContentRepository();
             _content = new StreamingContent("Back to the Future", "A high school student named Marty gets accidentally sent back in time 30 years.", 4.4, GenreType.SciFi, MaturityRating.PG);
             _repo.AddContentToDirectory(_content);
+        }
+
+        [TestMethod]
+        public void CheckMovieRunTime()
+        {
+            // Creating a movie type, using full constructor and inherited base
+            Movie joe = new Movie("Joe Dirt", "The story about a mullet and his meteor", 3.2, GenreType.Bromance, MaturityRating.PG_13, 112);
+            // Creating a list to replicate our repo
+            List<StreamingContent> miniRepo = new List<StreamingContent>();
+            miniRepo.Add(joe);
+
+            List<Movie> movies = new List<Movie>();
+
+            foreach (Movie content in miniRepo)
+            {
+                    movies.Add(content);
+            Console.WriteLine(content.RunTime);
+                
+            }
+
         }
 
         [TestMethod]
