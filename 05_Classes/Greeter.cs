@@ -13,9 +13,10 @@ namespace _05_Classes
         // 3 Method Signature - include method Name and any parameters
         // 4 Body of the method - code that get's executed when the method is called.
 
+        //1     2           3
         public void SayHello(string name)
         {
-            Console.WriteLine($"Hello {name}!");
+            Console.WriteLine($"Hello {name}!"); // 4
         }
 
         public void SaySomething(string speech)

@@ -8,10 +8,19 @@ namespace _05_Classes
 {
     public class Calculator
     {
+        //write a method that takes in two numbers and returns the sum of those two numnbers as an double
+
+
         public double GetSum(double numOne, double numTwo)
         {
             double sumSolution = numOne + numTwo;
+            Console.WriteLine(sumSolution);
             return sumSolution;
+        }
+
+        public void DisplaySum()
+        {
+            double sum = GetSum(5, 6);
         }
 
         //subtraction

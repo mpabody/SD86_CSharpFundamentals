@@ -151,7 +151,7 @@ namespace _05_Classes
         [TestMethod]
         public void PersonTransportTest()
         {
-            _person.Transport = new Vehicle("X-Wing", "Starship",1000,VehicleType.Plane);
+            _person.Transport = new Vehicle("X-Wing", "Starship", 1000, VehicleType.Plane);
             Console.WriteLine($"{_person.FullName} drives a {_person.Transport.Make} {_person.Transport.Model}");
 
             _person.Transport.Make = "T16 Skyhopper";
@@ -163,7 +163,49 @@ namespace _05_Classes
             Console.WriteLine($"Unset class: {blank.Transport}");
             Console.WriteLine($"Unset struct: {blank.DateOfBirth}");
             Console.WriteLine($"Age: {blank.Age}");
+            int number;
+            bool wasParsed = int.TryParse("3", out number);
+
+            if (wasParsed)
+            {
+                Console.WriteLine($"success {number}");
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
         }
 
+        [DataTestMethod]
+        [DataRow(100)]
+        public void FizzBuzz(int numToCountTo)
+        {
+            //1. Starting point
+            //2. condition to check
+            //3. the body - what to do each iteration of the loop
+            //4. what to do after the body and before checking the condition again
+
+            //     1               2            4
+            for (int i = 1; i <= numToCountTo; i++)
+            {
+                //3 - everything inside {} is the body
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    Console.WriteLine("Fizz Buzz");
+                }
+                else if (i % 3 == 0)
+                {
+                    Console.WriteLine("Fizz");
+                }
+                else if (i % 5 == 0)
+                {
+                    Console.WriteLine("Buzz");
+                }
+                else
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
     }
 }
