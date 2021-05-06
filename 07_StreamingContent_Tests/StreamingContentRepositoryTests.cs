@@ -60,15 +60,22 @@ namespace _07_StreamingContent_Tests
             List<StreamingContent> miniRepo = new List<StreamingContent>();
             miniRepo.Add(joe);
 
-            List<Movie> movies = new List<Movie>();
-
+            // Filtering our repo by Movies in our foreach
             foreach (Movie content in miniRepo)
             {
-                    movies.Add(content);
-            Console.WriteLine(content.RunTime);
-                
+                Console.WriteLine(content.RunTime);
             }
 
+            // Searching for StreamingContent makes run time unavaible without casting.
+            foreach (StreamingContent content in miniRepo)
+            {
+                // Finding movie types
+                if (content is Movie)
+                {
+                    // Setting content as Movie to access Movie exclusive properties
+                Console.WriteLine((content as Movie).RunTime);
+                }
+            }
         }
 
         [TestMethod]
