@@ -93,4 +93,31 @@ namespace _08_Interfaces.Fruit
     }
 
     // Make an Apple class inheriting from IFruit challenge
+
+    public class Apple : IFruit
+    {
+        // Lambda or 'phat arrow' 
+        public string Name => "Apple";
+
+        public bool IsPeeled { get; private set; }
+
+        public string Peel()
+        {
+            if (IsPeeled)
+            {
+                return "Ready for pies";
+            }
+            else
+            {
+                IsPeeled = true;
+                return "You peeled the apple";
+            }
+        }
+
+        public string Compare(Orange orange)
+        {
+            return "You can't compare these";
+        }
+        
+    }
 }

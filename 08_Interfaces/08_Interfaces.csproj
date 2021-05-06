@@ -49,9 +49,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Currency\Currency.cs" />
+    <Compile Include="Currency\ICurrency.cs" />
     <Compile Include="Fruit\Fruits.cs" />
     <Compile Include="Fruit\IFruit.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="IFruitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
