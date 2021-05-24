@@ -64,6 +64,8 @@ namespace _11_APIs
                 Console.WriteLine(personResult.Name);
             }
 
+
+
             SearchResult<Vehicle> starfighters = swapiService.GetVehicleSearchAsync("starfighter").Result;
             Console.WriteLine(starfighters.Count);
             foreach(Vehicle vehicleResult in starfighters.Results)
