@@ -21,7 +21,7 @@ namespace _12_GeneralStore.Controllers
             if (ModelState.IsValid)
             {
                 Product product = await _context.Products.FindAsync(transaction.ProductId);
-                if (product == null) 
+                if (product == null)
                     return BadRequest("Invalid product Id");
 
                 Customer customer = await _context.Customers.FindAsync(transaction.CustomerId);
@@ -57,6 +57,59 @@ namespace _12_GeneralStore.Controllers
                 return NotFound();
             }
             return Ok(transaction);
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateTransaction([FromUri] int id, [FromBody] Transaction newTransaction)
+        {
+            if (ModelState.IsValid)
+            {
+                Product product = await _context.Products.FindAsync(newTransaction.ProductId);
+                if (product == null)
+                    return BadRequest("Invalid product Id");
+
+                Customer customer = await _context.Customers.FindAsync(newTransaction.CustomerId);
+                if (customer == null)
+                    return BadRequest("Invalid customer Id");
+
+                Transaction oldTransaction = await _context.Transactions.FindAsync(id);
+                if (oldTransaction != null)
+                {
+                    //1                    //5                            // 4
+                    int difference = oldTransaction.PurchaseQuantity - newTransaction.PurchaseQuantity;
+                    if (difference > product.Quantity)
+                        return BadRequest($"There are only {product.Quantity} left in stock");
+
+                    product.Quantity += difference;
+
+                    oldTransaction.ProductId = newTransaction.ProductId;
+                    oldTransaction.PurchaseQuantity = newTransaction.PurchaseQuantity;
+                    oldTransaction.CustomerId = newTransaction.CustomerId;
+                    if (newTransaction.DateOfTransaction != null && newTransaction.DateOfTransaction != default)
+                    {
+                        oldTransaction.DateOfTransaction = newTransaction.DateOfTransaction;
+                    }
+                    await _context.SaveChangesAsync();
+                    return Ok(oldTransaction);
+
+                }
+                return NotFound();
+            }
+            return BadRequest(ModelState);
+        }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete([FromUri] int id)
+        {
+            var tranaction = await _context.Transactions.FindAsync(id);
+            if (tranaction == null)
+            {
+                return NotFound();
+            }
+
+            _context.Transactions.Remove(tranaction);
+            await _context.SaveChangesAsync();
+            return Ok("You did it congratulations!");
         }
 
     }
